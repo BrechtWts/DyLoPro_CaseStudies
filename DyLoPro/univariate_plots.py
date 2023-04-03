@@ -56,7 +56,7 @@ def topK_dfr_evol(log, top_k_dfr, outcome = None, time_unit='days', frequency='w
 
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -102,7 +102,7 @@ def topK_dfr_evol(log, top_k_dfr, outcome = None, time_unit='days', frequency='w
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -157,7 +157,7 @@ def topK_dfr_evol(log, top_k_dfr, outcome = None, time_unit='days', frequency='w
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -212,7 +212,7 @@ def topK_dfr_evol(log, top_k_dfr, outcome = None, time_unit='days', frequency='w
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, y= period_df['total'], axes = ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, y= period_df['total'], axes = ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -269,7 +269,7 @@ def topK_dfr_evol(log, top_k_dfr, outcome = None, time_unit='days', frequency='w
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -592,7 +592,7 @@ def dfr_evol(log, directly_follows_relations, outcome = None, time_unit='days', 
 
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -637,7 +637,7 @@ def dfr_evol(log, directly_follows_relations, outcome = None, time_unit='days', 
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -693,7 +693,7 @@ def dfr_evol(log, directly_follows_relations, outcome = None, time_unit='days', 
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -747,7 +747,7 @@ def dfr_evol(log, directly_follows_relations, outcome = None, time_unit='days', 
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, y= period_df['total'], axes = ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, y= period_df['total'], axes = ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -803,7 +803,7 @@ def dfr_evol(log, directly_follows_relations, outcome = None, time_unit='days', 
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1109,7 +1109,7 @@ def topK_variants_evol(log, top_k_vars, outcome = None, time_unit='days', freque
                     max_k), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1143,7 +1143,7 @@ def topK_variants_evol(log, top_k_vars, outcome = None, time_unit='days', freque
                     max_k, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1186,7 +1186,7 @@ def topK_variants_evol(log, top_k_vars, outcome = None, time_unit='days', freque
                     max_k, outcome), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -1403,7 +1403,7 @@ def variants_evol(log, variants, outcome = None, time_unit='days', frequency='we
                     max_k), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1438,7 +1438,7 @@ def variants_evol(log, variants, outcome = None, time_unit='days', frequency='we
                     max_k, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1481,7 +1481,7 @@ def variants_evol(log, variants, outcome = None, time_unit='days', frequency='we
                     max_k, outcome), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -1703,7 +1703,7 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
         st = plt.suptitle("{}: {} evolution fractions for each of the {} most frequent levels".format(case_feature, frequency, max_k), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1744,7 +1744,7 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -1791,7 +1791,7 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -1842,7 +1842,7 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -2098,7 +2098,7 @@ def num_casefts_evol(log, numeric_case_list, outcome = None, time_unit='days', f
         st = plt.suptitle("{} evolution of the {} of the numeric case features:".format(frequency, numeric_agg), fontsize=20)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2137,7 +2137,7 @@ def num_casefts_evol(log, numeric_case_list, outcome = None, time_unit='days', f
              numeric_agg, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2183,7 +2183,7 @@ def num_casefts_evol(log, numeric_case_list, outcome = None, time_unit='days', f
              numeric_agg, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -2229,7 +2229,7 @@ def num_casefts_evol(log, numeric_case_list, outcome = None, time_unit='days', f
              numeric_agg, outcome), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -2449,7 +2449,7 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
         # plt.suptitle("{}: {} evolution percentages and for each of the {} most frequent levels".format(case_feature, frequency, num_ftrs), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2487,7 +2487,7 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
              numeric_agg, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2535,7 +2535,7 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
              numeric_agg, numeric_agg), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -2582,7 +2582,7 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
              numeric_agg, outcome), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -2787,7 +2787,7 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
         st = plt.suptitle("{}: {} evolution fractions for each of the {} most frequent levels".format(event_feature, frequency, max_k), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2826,7 +2826,7 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of TT
         plt_period(x, period_df[tt_col], ax_0_r, y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
@@ -2874,7 +2874,7 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic numeric_agg of NEPC
         plt_period(x, period_df['num_events'], ax_0_r, y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
@@ -2926,7 +2926,7 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
         
         #   First plot:
         #       - periodic # cases initialized
-        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), location = 'left', color = '#1f77b4')
+        plt_period(x, period_df['total'], ax[0,0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
         ax_0_r= ax[0,0].twinx()
         #       - periodic fraction of cases with outcome = True ( = 1)
         plt_period(x, y= period_df['prc_True'], axes= ax_0_r, y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
@@ -2978,10 +2978,6 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
     time_col = determine_time_col(frequency, case_assignment)
 
     tt_col = determine_tt_col(time_unit)
-    ##################################################
-    # Verify from here: Don't you perhaps have to switch the preprocessing around. I.e. your still working with a full local_log here, without having ... Come back to this
-    # , might still be the right way. Just verify it. 
-    ##################################################
 
     levels = list(local_log.dropna(subset=event_feature)[event_feature].value_counts().index) # sorted
     num_levels = len(levels)
@@ -3092,7 +3088,7 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
             if num_cases == 0:
                 period_df['NOT_' + level_string + '_numev'] = [np.nan for _ in range(len(period_df))]
             else:
-                not_period_numev = not_case_sliced.pivot_table(values= tt_col,index= time_col,aggfunc=numeric_agg, fill_value=0) #column is tt_col
+                not_period_numev = not_case_sliced.pivot_table(values= 'num_events', index= time_col, aggfunc = numeric_agg, fill_value=0) 
                 not_period_numev.columns = ['NOT_' + level_string + '_numev']
                 period_df = period_df.merge(not_period_numev, left_index = True, right_index = True, how = 'left')
         
@@ -3206,7 +3202,7 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
         fig.set_size_inches([20, 6.25*2])
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and {} Throughput Time (in {}) (right) over time".format(numeric_agg, time_unit)
-            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0].twinx()
             #       - periodic numeric_agg of TT
@@ -3247,7 +3243,7 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
         fig.set_size_inches([20, 6.25*2])
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and {} Number of Events Per Case (NEPC) (right) over time".format(numeric_agg)
-            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0].twinx()
             #       - periodic numeric_agg of NEPC
@@ -3286,7 +3282,7 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
 
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and Fraction of cases with '{}' = True (right) over time".format(numeric_agg, outcome)
-            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0].twinx()
             #       - periodic fraction of cases with outcome = True ( = 1)
@@ -3469,7 +3465,7 @@ def distinct_variants_AdvancedEvol(log, outcome = None, time_unit='days', freque
         label_oldtt = "Already existing variants' cases: TT"
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and {} Throughput Time (in {}) (right) over time".format(numeric_agg, time_unit)
-            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0,1].twinx()
             #       - periodic numeric_agg of TT
@@ -3529,7 +3525,7 @@ def distinct_variants_AdvancedEvol(log, outcome = None, time_unit='days', freque
         label_oldNumev = "Already existing variants' cases: NEPC"
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and {} Number of Events Per Case (NEPC) (right) over time".format(numeric_agg)
-            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0,1].twinx()
             #       - periodic numeric_agg of NEPC
@@ -3588,7 +3584,7 @@ def distinct_variants_AdvancedEvol(log, outcome = None, time_unit='days', freque
 
         if cases_initialized:
             title_ci = "Number of Initialized Cases (left) and Fraction of cases with '{}' = True (right) over time".format(numeric_agg, outcome)
-            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases initialized ({})".format(frequency), 
+            plt_period(x, period_df['total'], ax[0,1], y_label = "# Cases", label = "# cases contained ({})".format(frequency), 
                         location = 'left', color = '#1f77b4', title = title_ci)
             ax_0_r= ax[0,1].twinx()
             #       - periodic fraction of cases with outcome = True ( = 1)

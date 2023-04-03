@@ -103,14 +103,14 @@ class DynamicLogPlots():
             Determines which time series are constructed and visualized, by default `'univariate'`.
             For a more detailed explanation of the different `plt_type` options, see Notes.
         numeric_agg : {'mean', 'median', 'min', 'max', 'std'}
-            Determines how periodic quantities are aggregated, by default `'mean'`. The specified
+            Determines how periodic quantities are aggregated, by default `'mean'`. The specified 
             aggregation function will be applied to all the requested time series, except for 
             those quantities that express fractions or counts (if any). For a more detailed 
             explanation of the different `numeric_agg` options, see Notes.
         max_k : int, optional
             Only the max_k most frequently occurring DFRs are considered, by default 10. 
         xtr_outlier_rem : bool, optional
-            If True, the vertical ranges of the plots are only determined by regular  
+            If True, the vertical ranges of the plots are only determined by regular 
             values, i.e. extreme outliers (>q3 + 3*iqr) in the time series are neglected 
             when determining the vertical range, by default `True`.
 
