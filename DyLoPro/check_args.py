@@ -2,9 +2,6 @@ import pandas as pd
 import numpy as np
 import datetime as dt
 
-'''REMARK: FOR THOSE STRING ARGUMENT CHECKS ETC, IN THE FUNCTION SPECIFIC FUNCTIONS, FIRST ALWAYS CHECK WHETHER IT IS NOT JUST EQUAL TO THE DEFAULT VALUE, THEN
-YOU DON'T HAVE TO NAVIGATE TO THE CORRESPONDING CHECKING FUNCTION SINCE YOU ALREADY KNOW IT'S OKAY! '''
-
 def _verify_ColsInLog(cols, given_cols):
     '''Verifies whether the given column names are actually present in the given log. 
 

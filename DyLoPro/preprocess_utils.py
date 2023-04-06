@@ -62,12 +62,11 @@ def select_timerange(log, start_date, end_date):
 
     if end_date:
         end_date = dt.datetime.strptime(end_date, "%d/%m/%Y") #dt.datetime object 
-    else:
+    else: 
         end_date = log['time:timestamp'].max() #timestamp object 
         end_date = end_date.to_pydatetime() #dt.datetime object 
         end_date = end_date +  relativedelta(months=+1) 
     log = pm4py.filter_time_range(log, start_date, end_date, mode='traces_contained') 
-    # log.drop_duplicates(inplace=True)
 
     return log
 

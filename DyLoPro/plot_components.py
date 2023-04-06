@@ -1,16 +1,7 @@
-import pm4py 
-from pm4py.statistics.attributes.pandas import get
-from pm4py.visualization.graphs import visualizer as graphs_visualizer
-import pandas as pd
-import numpy as np
-import datetime as dt
-import matplotlib.pyplot as plt 
-# from preprocess_utils import add_year_month_day
-# from plotting_utils import addlabels_barcharts, get_features_df
-# from pm4py.objects.log.util import interval_lifecycle
-# from pm4py.objects.conversion.log import converter
-# from pm4py.statistics.traces.generic.pandas import case_statistics
-# from plotting_utils import determine_time_col, determine_tt_col
+# import pandas as pd
+# import numpy as np
+# import datetime as dt
+# import matplotlib.pyplot as plt 
 
 def plt_period_tt(x, y, axes, time_unit, numeric_agg, location= 'right', color='red', shared=False):
     '''
@@ -278,7 +269,7 @@ def plt_period(x, y, axes, y_label, number=None, max_k=None, title=None, label=N
             axes.set_title(title)
 
     else:
-        if label: #4µ
+        if label: #4
             # Marker_idx configured st in case of number > num_markers, 
             # we start again at the beginning of the marker list. 
             marker_idx = number - 1 - num_markers*((number-1)//num_markers)
@@ -301,25 +292,6 @@ def plt_period(x, y, axes, y_label, number=None, max_k=None, title=None, label=N
             # axes.set_title("DFR {}: {} evolution of #occurances/case".format(number, frequency))
             axes.set_title(title)
 
-
-
-# def plt_period_alldfrpercase(x, y, axes, number, dfr_string, frequency, max_k):
-#     '''
-#         args:
-#             - x:            data horizontal axis ; periodic timestamps
-#             - y:            data vertical axis 
-#             - axes:         matplotlib.axes.Axes object; the axis on which the periodic numeric_agg of the throughput time needs to be plotted
-#             - number:       int; number i of the Directly-Follows Relation (dfr) with dfr i being the i'th most frequently occurring dfr. 
-#             - dfr_string:   string; name of the directly follows relationship. 
-#             - frequency:    string = 'daily', 'weekly' (default), 'two weekly' or 'monthly' ; frequency by which the observations are
-#                             grouped together.
-#             - shared:       boolean = False (default) ; setting shared to True only useful when location='only', and needed when this axes is shared by multiple graphs. 
-#             - max_k:        int    = 10 (default); only the max_k most frequently occurring Directly-Follows Relations are plotted.
-#         plots: evolution of periodic #DFR / cases for the max_k most frequently occuring DFRs.
-#     '''
-#     for i in range(max_k):
-#         #NOTE: NO JUST DO IT LIKE HERE ABOVE! WITH SHARED and if number==1!
-#         return -1
 
 
 

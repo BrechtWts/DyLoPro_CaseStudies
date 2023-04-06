@@ -1,6 +1,5 @@
 from DyLoPro.preprocess_utils import _preprocess_pipeline, select_timerange
 import DyLoPro.univariate_plots as up
-# from DyLoPro.check_args import _verify_outcomeCol
 from DyLoPro.plotting_utils import get_variant_case, get_sorted_DFRs, get_filtered_dfr_df, get_filtered_var_df
 import DyLoPro.validate_methods as valm
 import pandas as pd
@@ -11,32 +10,104 @@ class DynamicLogPlots():
     def __init__(self, event_log, case_id_key = 'case:concept:name', activity_key = 'concept:name', timestamp_key = 'time:timestamp',
                     categorical_casefeatures = [], numerical_casefeatures = [], categorical_eventfeatures = [], numerical_eventfeatures = [], 
                     start_date = None, end_date = None, outcome = None):
-        """_summary_
+        """Initialize a DynamicLogPlots instance by specifying the appropriate arguments.
 
         Parameters
         ----------
-        event_log : _type_
-            _description_
+        event_log : pandas.DataFrame
+            Event log. Events are regarded as instantaneous.  
         case_id_key : str, optional
-            _description_, by default 'case:concept:name'
+            Column name (in `event_log`) containing the case ID. All 
+            events pertaining to the same case should share the same 
+            unique case ID. By default `'case:concept:name'`. 
         activity_key : str, optional
-            _description_, by default 'concept:name'
+            Column name (in `event_log`) containing the activity labels. 
+            By default `'concept:name'`. 
         timestamp_key : str, optional
-            _description_, by default 'time:timestamp'
-        categorical_casefeatures : list, optional
-            _description_, by default []
-        numerical_casefeatures : list, optional
-            _description_, by default []
-        categorical_eventfeatures : list, optional
-            _description_, by default []
-        numerical_eventfeatures : list, optional
-            _description_, by default []
-        start_date : _type_, optional
-            _description_, by default None
-        end_date : _type_, optional
-            _description_, by default None
-        outcome : _type_, optional
-            _description_, by default None
+            Column name (in `event_log`) containing the timestamps for 
+            each event. By default `'time:timestamp'`. Should be of a 
+            datetime64 dtype. 
+        categorical_casefeatures : list of str, optional
+            List of strings containing the column names (in `event_log`) 
+            that correspond to categorical case features. All categorical 
+            case features for which you wish to analyze the dynamics over 
+            time must be specified in this list first, or alternatively, 
+            after having already initialized a `DynamicLogPlots` object, 
+            with the `add_categorical_caseft(case_feature)` class method. 
+            By default `[]`. See Notes for more details on how each 
+            categorical case feature column should be formatted. 
+        numerical_casefeatures : list of str, optional
+            List of strings containing the column names (in `event_log`) 
+            that correspond to numerical case features. All numerical 
+            case features for which you wish to analyze the dynamics over 
+            time must be specified in this list first, or alternatively, 
+            after having already initialized a `DynamicLogPlots` object, 
+            with the `add_numerical_caseft(case_feature)` class method. 
+            By default `[]`. See Notes for more details on how each 
+            numerical case feature column should be formatted. 
+        categorical_eventfeatures : list of str, optional
+            List of strings containing the column names (in `event_log`) 
+            that correspond to categorical event features. All 
+            categorical event features for which you wish to analyze the 
+            dynamics over time must be specified in this list first, or 
+            alternatively, after having already initialized a 
+            `DynamicLogPlots` object, with the 
+            `add_categorical_eventft(event_feature)` class method. By 
+            default `[]`. See Notes for more details on how each 
+            categorical event feature column should be formatted.
+        numerical_eventfeatures : list of str, optional
+            List of strings containing the column names (in `event_log`) 
+            that correspond to numerical event features. All numerical 
+            event features for which you wish to analyze the dynamics 
+            over time must be specified in this list first, or 
+            alternatively, after having already initialized a 
+            `DynamicLogPlots` object, with the 
+            `add_numerical_eventft(event_feature)` class method. By 
+            default `[]`. See Notes for more details on how each 
+            numerical event feature column should be formatted.
+        start_date : str, optional
+            By default `None`. If specified, only the cases starting 
+            after that date will be included in the dynamic profiling. 
+            Should be specified in the following format `'dd/mm/YYYY'`. 
+            For example, November 4th 2022 should be specified as 
+            `start_date='04/11/2022'`.
+        end_date : str, optional
+            By default `None`. If specified, only the cases ending 
+            before that date will be included in the dynamic profiling. 
+            Should be specified in the following format `'dd/mm/YYYY'`. 
+            For example, November 4th 2022 should be specified as 
+            `start_date='04/11/2022'`.
+        outcome : str, optional
+            Column name (in `event_log`) containing the binary case 
+            outcome values (if present). By default `None`. Should be of 
+            an integer dtype. See Notes for more details on how an 
+            outcome column should be formatted.
+
+        Notes
+        -----
+        Formatting requirements specified columns in `event_log`: 
+        - `categorical_casefeatures` : Every column in `event_log` 
+        specified in this list has to be of one of the following dtypes: 
+        category, object, boolean. Furthermore, every event (row) 
+        pertaining to the same case (i.e. same case ID specified in the 
+        `case_id_key` column) should share the exact same value for each 
+        case feature. 
+        - `numerical_casefeatures` : Every column in `event_log` 
+        specified in this list has to be of a numerical dtype. 
+        Furthermore, every event (row) pertaining to the same case (i.e. 
+        same case ID specified in the `case_id_key` column) should share 
+        the exact same value for each case feature. 
+        - `categorical_eventfeatures` : Every column in `event_log` 
+        specified in this list has to be of one of the following dtypes: 
+        category, object, boolean. 
+        - `numerical_eventfeatures` : Every column in `event_log` 
+        specified in this list has to be of a numerical dtype. 
+        - `outcome`: An outcome column in `event_log` should be of an 
+        integer dtype, only contain the values `1` (positive cases) and 
+        `0` (negative cases). We regard outcome as case outcomes, and 
+        hence every event (row) pertaining to the same case (i.e. 
+        same case ID specified in the `case_id_key` column) should share 
+        the exact same value for the outcome. 
         """
         log = event_log.copy()
         valm._verify_initial(log, case_id_key, activity_key, timestamp_key, categorical_casefeatures, 
@@ -1235,33 +1306,3 @@ class DynamicLogPlots():
                                      variants = variants, 
                                      counts = counts)
         return dfr_df_filtered
-
-    # To-Do: 
-        # Methods to query a dataframe with the top_k most frequent variants 
-        # Methods to query a df with the top_k most frequent DFRs
-        # Methods to ... 
-        # Include 
-    def abc(self):
-        """"""
-
-
-        """Get a `pandas.DataFrame` containing the DFR numbers together 
-        with a tuple containing the two corresponding activity labels 
-        of each DFR. 
-
-        Parameters
-        ----------
-        max_k : int, optional
-            If specified, a dataframe containing the DFR numbers and 
-            their corresponding activity pairs for the `max_k` most 
-            frequently occurring DFRs is returned. By default `None`.
-        directly_follows_relations : list of tuple, optional
-            List of tuples containing the specified DFRs. Each DFR 
-            needs to be specified as a tuple that contains 2 strings, 
-            referring to the 2 activities in the DFR, e.g. 
-            ('activity_a', 'activity_b'). If specified and `max_k=None`, 
-            a dataframe containing the DFR numbers and corresponding 
-            activity pairs for each of the specified DFRs is returned. 
-            If `max_k!=None`, the DFRs specified here are ignored. 
-            By default `None`.
-        """
