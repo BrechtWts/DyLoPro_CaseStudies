@@ -3,7 +3,10 @@ import numpy as np
 
 def select_string_column(log, case_agg, col, case_id_key = 'case:concept:name'):
     """
-    Extract N columns (for N different attribute values; hotencoding) for the features dataframe for the given string attribute
+    Extract N columns (for N different attribute values; hotencoding) for the features 
+    dataframe for the given string attribute.
+
+    Code of this function inspired by source code of PM4PY. 
 
     Parameters
     --------------
@@ -39,7 +42,9 @@ def select_string_column(log, case_agg, col, case_id_key = 'case:concept:name'):
 def select_number_column(log, case_agg, col, numEventFt_transform, 
                          case_id_key = 'case:concept:name') -> pd.DataFrame:
     """
-    Extract a column for the features dataframe for the given numeric attribute
+    Extract a column for the features dataframe for the given numeric attribute.
+
+    Code of this function inspired by source code of PM4PY. 
 
     Parameters
     ----------
@@ -69,6 +74,8 @@ def get_features_df(log: pd.DataFrame, column_list,
                     case_id_key = 'case:concept:name', numEventFt_transform = 'last') -> pd.DataFrame:
     """
     Given a dataframe and a list of columns, performs an automatic feature extraction
+
+    Code of this function inspired by source code of PM4PY. 
 
     Parameters
     ----------
@@ -131,16 +138,6 @@ def _event_fts_to_tracelvl(log, event_features, numEventFt_transform = 'last'):
     log = log.merge(feature_table, on='case:concept:name', how='left', suffixes=("","_trace"))
     return log
 
-# def addlabels_barcharts(axes,x,y):
-#     '''
-#     Adds the values on top of the bars in a bar chart 
-#         args: 
-#             - x: the data / bins of the bar chart 
-#             - y: the data on the vertical axis 
-#     '''
-#     for i in range(len(x)): 
-#         axes.text(i, y[i], y[i], ha='center', rotation=45) 
-#         #plt.text takes as arguments: 1: x coord, 2: y coord, 3: text to be put on the plot, 4: horizontal alignment  
 
 def determine_time_col(frequency, case_assignment):
     """Determine the time period column ('time_col') that indicates 
@@ -211,7 +208,6 @@ def get_outcome_percentage(filtered_log, outcome, time_col):
         returns:
             - periodic % of (the filtered) cases with outcome == 1 
     '''
-    # filtered_case = filtered_log.drop_duplicates(subset='case:concept:name')
     # Periodic number of cases in the filtered log. (I.e. periodic number of cases that satisfy the condition on which you have filtered.)
     per_counts = filtered_log.pivot_table(values= 'case:concept:name',index= time_col, aggfunc='count', fill_value=0)
     per_counts.columns = ['total']
@@ -224,70 +220,11 @@ def get_outcome_percentage(filtered_log, outcome, time_col):
         per_counts['num_true'] = [0 for i in range(len(per_counts))]
     else:
         per_true.columns = ['num_true']
-        # dfr_true = dfr_true[[1]]
-        # dfr_true.columns = [str(dfr)+'_True']
         per_counts = per_counts.merge(per_true, left_index = True, right_index = True, how='left')
 
-    # fillvalues = {'num_true': 0}
-    # dfr_count = dfr_count.fillna(value = fillvalues)
     per_counts['prc_true'] = per_counts['num_true'] / per_counts['total']
-    # period_df = period_df.merge(dfr_count, left_index = True, right_index = True, how='left')
+
     return per_counts[['prc_true']]
-
-
-def get_dfr_time_old(log, dfr):
-    ''' For each case: computes the performance (time between) for each occurance of the given dfr (if any).
-        args: 
-            - log: pd.DataFrame 
-            - dfr: tuple; ('activity_string_1', 'activity_string_2')
-
-        returns: 
-            - log: pd.DataFrame
-            - perf_unit: string = ''seconds', 
-    '''
-    # Inner auxiliary function:
-    def determ_perf_unit(series, delta_series):
-        '''Determines appropriate perf_unit (time_unit) to express the time between the 2 activities in the dfr
-            args:
-                - series: pd.Series 
-
-            returns:
-                - series: pd.Series with updated perf_unit 
-                - perf_unit: string; describing the perf_unit
-        '''
-        unit_list = ['microseconds', 'milliseconds', 'seconds', 'minutes', 'hours', 'days']
-        delta_list = [pd.Timedelta(microseconds=1), pd.Timedelta(milliseconds=1), pd.Timedelta(seconds=1), pd.Timedelta(minutes=1), pd.Timedelta(hours=1), pd.Timedelta(days=1)]
-        idx = 5
-        while (series.mean()<1) and (idx !=0):
-            idx -= 1
-            series = delta_series / delta_list[idx]
-        
-        perf_unit = unit_list[idx]
-
-        return series, perf_unit
-
-    local_log = log.copy()
-    local_log['next:concept:name'] = local_log.groupby(['case:concept:name'])['concept:name'].shift(-1)
-    local_log['dfr_start'] = list(zip(local_log['concept:name'], local_log['next:concept:name']))
-    local_log['next_stamp']= local_log.groupby(['case:concept:name'])['time:timestamp'].shift(-1)
-    # log['time_till_next'] = (log['next_stamp'] - log['time:timestamp']).dt.total_seconds() # In seconds (int)
-    local_log['deltat_till_next'] = local_log['next_stamp'] - local_log['time:timestamp']
-    local_log['time_till_next'] = (local_log['next_stamp'] - local_log['time:timestamp']) / pd.Timedelta(days=1) # In days (int)
-    # Select only the information regarding that dfr
-    local_log = local_log[local_log['dfr_start'] == dfr]
-    series = local_log['time_till_next']
-    perf_unit = 'days'
-    if series.mean() < 1:
-        series, perf_unit = determ_perf_unit(series, local_log['deltat_till_next'])
-    
-    local_log = local_log[['case:concept:name']]
-    local_log[str(dfr)+'_performance'] = series
-
-    return local_log, perf_unit
-    
-    # Now you have it. But how to proceed when having received the result of this function? Got it: merge the needed periodic stamp (determined by case_assignment) into this 
-    # returned log, instead of vice versa. I.e. make a case_log, only take the 'case:concept:name' and 'case_time_col', and do
-    # this_log.merge(case_log[['case:concept:name', 'case_time_col']])
 
 def get_dfr_time(log, case_log, dfr_list, time_col, numeric_agg):
     ''' For each case: computes the performance (time between) for each occurance of the given dfr (if any).
@@ -310,7 +247,6 @@ def get_dfr_time(log, case_log, dfr_list, time_col, numeric_agg):
     log_loc['dfr_start'] = list(zip(log_loc['concept:name'], log_loc['next:concept:name']))
     log_loc['next_stamp']= log_loc.groupby(['case:concept:name'])['time:timestamp'].shift(-1)
     log_loc['time_till_next'] = (log_loc['next_stamp'] - log_loc['time:timestamp']) / pd.Timedelta(days=1) # In days (int)
-    # Underneath: added a .copy(). Still needs to be tested! 
     log_filtered = log_loc[log_loc['dfr_start'].isin(dfr_list)][['case:concept:name', 'dfr_start', 'time_till_next']].copy()
     log_filtered = log_filtered.merge(case_log[['case:concept:name', time_col]], on= 'case:concept:name', how= 'left')
     period_dfr_perf = log_filtered.pivot_table(values = 'time_till_next', index = time_col, columns = 'dfr_start', aggfunc = numeric_agg, fill_value = 0) # in days
@@ -338,27 +274,6 @@ def get_dfr_time(log, case_log, dfr_list, time_col, numeric_agg):
     perf_units_cols = [perf_units[idx] for idx in time_indices] # (num_cols, )
 
     return period_dfr_perf, perf_units_cols 
-
-def get_maxrange_old(agg_df):
-    ''' Computes for each of the given arrays / pd Series the maximum y-range, by neglecting extreme outliers (values > q3 +3*iqr). 
-        args:
-            - agg_df: (num periods, num series) - shaped dataframe, containing the series for which outliers should be accounted for before plotting. 
-        
-        returns: 
-            - max_values:   (num series, ) - shaped np.ndarray, containing the max y-values for each of the columns / series in agg_df. 
-            - outliers:     (num series, ) - shaped boolean np.ndarray. For each element i = 0, ..., num series - 1, the i'th element = True 
-                            if the i-th periodic series contained an extreme outlier, False otherwise. 
-    '''
-
-    q1 = np.quantile(agg_df, 0.25, axis = 0) # shape (num series, )
-    q3 = np.quantile(agg_df, 0.75, axis = 0) # shape (num series, )
-    iqr = q3 - q1 
-    upper_bound = q3 + (3*iqr)
-    # Replacing the extreme outliers in each column by NaN:
-    agg_df_MinusFliers = np.where(agg_df>upper_bound[None,:], np.nan, agg_df) # shape (num periods, num series)
-    outliers = np.isnan(np.amax(agg_df_MinusFliers, axis=0)) # boolean array; shape (num series, )
-
-    return np.nanmax(agg_df_MinusFliers, axis=0), outliers # both shape (num series, )
 
 def get_maxrange(agg_df):
     ''' Computes for each of the given arrays / pd Series the maximum y-range, by neglecting extreme outliers (values > q3 + 3*iqr). 
@@ -654,7 +569,6 @@ def get_newVar_cases(log, time_col):
     loc_log = log.drop_duplicates(subset = 'case:concept:name').copy()
     case_id_log = loc_log[['case:concept:name']].copy()
     enhanced_log, periodic_newvars = get_ordered_variantMap(case_log = loc_log, time_col = time_col)
-    # Here you should already make it a case log, and then pass it on to the get_ordered_variantMap method. 
     time_col_list = periodic_newvars[time_col].unique()
     newVar_cases = []
     for period in time_col_list:
@@ -665,33 +579,4 @@ def get_newVar_cases(log, time_col):
     # So now we have the list of all case_id's for that correspond to a variant that is newly introduced in its respective time period
     case_id_log.loc[:, "NewOrOld"] = np.where(case_id_log['case:concept:name'].isin(newVar_cases), "New", "Old")
 
-    # case_id_log now contains a mapping that for every unique case id states whether it corresponds to a Variant that is newly introduced in the 
-    # corresponding time period ("New"), or not ("Old"). By merging this result into the appropriate log in the plotting method (on 'case:concept:name'),
-    # You can easily and very efficiently make pivot tables that periodically make the distinction between new cases and old cases! 
     return case_id_log
-
-        
-
-
-
-
-'''
-    # vals = df[col].unique()
-    vals = df.dropna(subset=col)[col].unique()
-    for val in vals:
-        if val is not None:
-            # filt_df_cases = df[df[col] == val][case_id_key].unique()
-            filt_df_cases = df.loc[df[col] == val, case_id_key].unique()
-            if type(val)!=bool:
-                new_col = col + "_" + val.encode('ascii', errors='ignore').decode('ascii').replace(" ", "")
-            elif type(val)==bool:
-                if val:
-                    new_col = col + "_" + "True"
-                else:
-                    new_col = col + "_" + "False"
-            fea_df[new_col] = fea_df[case_id_key].copy().isin(filt_df_cases)
-            fea_df[new_col] = fea_df[new_col].copy().astype("int")
-    return fea_df
-
-'''
-

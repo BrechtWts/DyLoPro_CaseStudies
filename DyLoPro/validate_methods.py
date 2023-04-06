@@ -542,7 +542,7 @@ def _verify_get_var_df(max_k, variants, counts, all_vars):
         be included. 
     all_vars: list of tuple
         List of all variants present in the event log. 
-    """
+    """ 
     # Verify counts:
     error, err_msge = ca._verify_counts_bool(counts)
     if error: 

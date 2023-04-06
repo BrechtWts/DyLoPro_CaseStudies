@@ -10,7 +10,11 @@ class DynamicLogPlots():
     def __init__(self, event_log, case_id_key = 'case:concept:name', activity_key = 'concept:name', timestamp_key = 'time:timestamp',
                     categorical_casefeatures = [], numerical_casefeatures = [], categorical_eventfeatures = [], numerical_eventfeatures = [], 
                     start_date = None, end_date = None, outcome = None):
-        """Initialize a DynamicLogPlots instance by specifying the appropriate arguments.
+        """Initialize a `DynamicLogPlots` instance by specifying the appropriate arguments.
+
+        After successfully initializing a `DynamicLogPlots` object, all of DyLoPro's 
+        plotting functionalities can invoked by calling the appropriate 
+        `DynamicLogPlots` methods. 
 
         Parameters
         ----------
@@ -1100,7 +1104,7 @@ class DynamicLogPlots():
 
 
     def distinct_variants_AdvancedEvol(self, time_unit='days', frequency='weekly', case_assignment = 'first_event', plt_type= 'univariate', numeric_agg= 'mean', xtr_outlier_rem = True, cases_initialized = True):
-        """_summary_
+        """Documentation COMING SOON...
 
         Parameters
         ----------
@@ -1210,7 +1214,7 @@ class DynamicLogPlots():
         ----------
         start_date : str, optional
             Start date string of format "dd/mm/YYYY", by default None
-        end_date : _type_, optional
+        end_date : str, optional
             End date string of format "dd/mm/YYYY", by default None
         """
         valm._verify_select_time_range(start_date, end_date)
@@ -1222,6 +1226,8 @@ class DynamicLogPlots():
         self.variant_df.columns = ['variant', 'variant count']
         # Recomputing the ordered list of Directly-Follows Relations
         self.dfrelations, self.dfr_df = get_sorted_DFRs(self.log)
+    
+    # Methods to get dataframes for DFR and Variant encodings in the visuals. 
 
     def get_DFR_df(self, max_k = None, directly_follows_relations = None, counts = False):
         """Get a `pandas.DataFrame` containing the DFR numbers together 

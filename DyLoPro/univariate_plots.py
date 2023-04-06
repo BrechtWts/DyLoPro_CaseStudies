@@ -1203,13 +1203,10 @@ def topK_variants_evol(log, top_k_vars, outcome = None, time_unit='days', freque
             #4
             plt_period(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[0,1], y_label = "Fraction of initialized cases", number = i+1, max_k=max_k, 
                 title = "{} evolution fraction of initialized cases belonging to the {} most common variants".format(frequency, max_k), label = "Variant {}".format(i+1))
-            # plt_period_variant_prc(x=x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[0,1], var_num = i+1, frequency=frequency,
-            #                     max_k=max_k, location='only', color=None, shared=True)
             #3
             plt_period(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[i+1,0], y_label = "Variant {}: fraction cases".format(i+1), 
                 title= "Variant {}: {} evolution of fraction cases it accounts for".format(i+1, frequency))
-            # plt_period_variant_prc(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[i+1,0], var_num = i+1, frequency=frequency,
-            #                     max_k=max_k, location='only', color='#1f77b4', shared=False)
+
             plt_period(x, y= period_df["Variant {}_prc_True".format(i+1)], axes=ax[i+1,1], y_label = "Fraction cases '{}' = True".format(outcome), number = 1, max_k=2, 
                 title = "{} evolution fraction '{}' = True for cases of Variant {}".format(frequency, outcome, i+1),
                 label = "Fraction '{}' = True for cases of Variant {}".format(outcome, i+1))
@@ -1242,7 +1239,6 @@ def topK_variants_evol(log, top_k_vars, outcome = None, time_unit='days', freque
     case_variant = get_variant_case(log)
     
     variant_id = [i for i in range(1, max_k+1)]
-    # idx_var_mapping = dict(zip(variant_id, top_k_vars))
 
     case_log = log.drop_duplicates(subset='case:concept:name').copy()
     #Periodic counts initialized cases
@@ -1498,13 +1494,10 @@ def variants_evol(log, variants, outcome = None, time_unit='days', frequency='we
             #4
             plt_period(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[0,1], y_label = "Fraction of initialized cases", number = i+1, max_k=max_k, 
                 title = "{} evolution fraction of initialized cases belonging to the {} given variants".format(frequency, max_k), label = "Variant {}".format(i+1))
-            # plt_period_variant_prc(x=x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[0,1], var_num = i+1, frequency=frequency,
-            #                     max_k=max_k, location='only', color=None, shared=True)
             #3
             plt_period(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[i+1,0], y_label = "Variant {}: fraction cases".format(i+1), 
                 title= "Variant {}: {} evolution of fraction cases it accounts for".format(i+1, frequency))
-            # plt_period_variant_prc(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[i+1,0], var_num = i+1, frequency=frequency,
-            #                     max_k=max_k, location='only', color='#1f77b4', shared=False)
+
             plt_period(x, y= period_df["Variant {}_prc_True".format(i+1)], axes=ax[i+1,1], y_label = "Fraction cases '{}' = True".format(outcome), number = 1, max_k=2, 
                 title = "{} evolution fraction '{}' = True for cases of Variant {}".format(frequency, outcome, i+1),
                 label = "Fraction '{}' = True for cases of Variant {}".format(outcome, i+1))
@@ -1965,8 +1958,6 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
     if xtr_outlier_rem:
         max_values_prc = get_maxrange(case_df)
 
-    # for level in levels: 
-    #     period_df[level+'_prc'] = period_df[level] / period_df['total']
     
     if type == 'univariate':
         plt_caseft_uni()
@@ -1988,9 +1979,6 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
             not_case_tt.columns = ['NOT_'+level+'_tt']
             period_df = period_df.merge(not_case_tt, left_index = True, right_index= True, how = 'left')
             if xtr_outlier_rem:
-                # not_max_tt, not_det_tt = get_maxrange(not_case_tt)
-                # not_max_values_tt.append(not_max_tt[0])
-                # detected_not_tt.append(not_det_tt[0])
                 not_max_tt = get_maxrange(not_case_tt)
                 not_max_values_tt.append(not_max_tt[0])
 
@@ -2004,7 +1992,6 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
         case_numev.columns = [col+'_numev' for col in list(case_numev.columns)]
         period_df = period_df.merge(case_numev, left_index = True, right_index = True, how = 'left')
         if xtr_outlier_rem:
-            # max_values_numev, detected_numev = get_maxrange(case_numev)
             max_values_numev = get_maxrange(case_numev)
 
         not_max_values_numev = []
@@ -2014,9 +2001,6 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
             not_case_numev.columns = ['NOT_'+level+'_numev']
             period_df = period_df.merge(not_case_numev, left_index = True, right_index= True, how = 'left')
             if xtr_outlier_rem:
-                # not_max_numev, not_det_numev = get_maxrange(not_case_numev)
-                # not_max_values_numev.append(not_max_numev[0])
-                # detected_not_numev.append(not_det_numev[0])
                 not_max_numev = get_maxrange(not_case_numev)
                 not_max_values_numev.append(not_max_numev[0])
 
@@ -2025,9 +2009,7 @@ def topK_categorical_caseftr_evol(log, case_feature, outcome = None, time_unit =
 
     elif type == 'type_outcome':
         max_values_out = []
-        # detected_out = []
         not_max_values_out = []
-        # detected_not_out = []
         for level in tqdm(levels, desc = "Computing additional {} outcome aggregations for each of the {} most frequently occurring levels".format(frequency, max_k)):
             level_log = case_log[case_log[case_feature]==level]
             level_prcTrue = get_outcome_percentage(filtered_log= level_log, outcome = outcome, time_col = time_col)
@@ -2321,7 +2303,6 @@ def num_casefts_evol(log, numeric_case_list, outcome = None, time_unit='days', f
             max_global_tt = max_global_tt[0]
 
     x=period_df.index
-    # tt_idx_casefts= []
     ratio_z_casefts = []
 
     # Periodic aggregations of all given numeric case features:
@@ -2446,7 +2427,6 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
         fig, ax = plt.subplots(num_ftrs+2, 1)
         fig.set_size_inches([20, 6.25*(num_ftrs+2)])
         st = plt.suptitle("{} evolution of the {} of the numeric event features:".format(frequency, numeric_agg), fontsize=20)
-        # plt.suptitle("{}: {} evolution percentages and for each of the {} most frequent levels".format(case_feature, frequency, num_ftrs), fontsize=15)
         #   First plot:
         #       - periodic # cases initialized
         plt_period(x, period_df['total'], ax[0], y_label = "# Cases", label = "# cases contained ({})".format(frequency), location = 'left', color = '#1f77b4')
@@ -2678,7 +2658,6 @@ def num_eventfts_evol(log, numeric_event_list, outcome = None, time_unit='days',
             max_global_tt = max_global_tt[0]
 
     x=period_df.index
-    # tt_idx_casefts= []
     ratio_z_casefts = []
 
     # Periodic aggregations of all given numeric event features:
@@ -2983,11 +2962,9 @@ def topK_categorical_eventftr_evol(log, event_feature, outcome = None, time_unit
     num_levels = len(levels)
     if max_k < num_levels: 
         levels = levels[:max_k]
-        # level_strings = level_strings[:max_k]
     elif max_k > num_levels:
         max_k = num_levels
         levels = levels[:max_k]
-        # level_strings = level_strings[:max_k]
     #Getting the corresponding binary column names constructed during preprocessing: 
     level_strings = []
     for level in levels:
@@ -3215,12 +3192,7 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
         else: 
             #       - periodic numeric_agg of TT
             title_tt = "{} Throughput Time (in {}) over time".format(numeric_agg, time_unit)
-            # plt_period(x, period_df[tt_col], ax[0], y_label= "{} Throughput Time".format(numeric_agg), label= "{} Throughput Time ({})".format(numeric_agg, time_unit),
-            #             location = 'left', color= '#ff7f0e', title = title_tt)
             plt_period(x, period_df[tt_col], ax[0], y_label= "{} Throughput Time".format(numeric_agg), title = title_tt)
-
-            # plt_period(x, y=period_df["Variant {}_prc".format(i+1)], axes=ax[i+2], y_label = "Variant {}: fraction cases".format(i+1), 
-            #         title= "Variant {}: {} evolution of fraction cases it accounts for".format(i+1, frequency))
             if xtr_outlier_rem:
                 ax[0].set_ylim(top = max_global_tt*1.05)
 
@@ -3256,8 +3228,6 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
         else: 
             #       - periodic numeric_agg of NEPC
             title_nepc = "{} Number of Events Per Case (NEPC) over time".format(numeric_agg)
-            # plt_period(x, period_df['num_events'], ax[0], y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), label= "{} NEPC".format(numeric_agg),
-            #         location = 'left', color= '#ff7f0e', title = title_nepc)
             plt_period(x, period_df['num_events'], ax[0], y_label= "{} Number of Events Per Case (NEPC)".format(numeric_agg), title = title_nepc)
             if xtr_outlier_rem:
                 ax[0].set_ylim(top = max_global_numev*1.05)
@@ -3294,9 +3264,6 @@ def distinct_variants_evol(log, outcome = None, time_unit='days', frequency='wee
                 ax_0_r.set_ylim(top = max_global_out*1.05)
         else: 
             title_out = "Fraction of cases with '{}' = True over time".format(outcome)
-            #       - periodic fraction of cases with outcome = True ( = 1)
-            # plt_period(x, y= period_df['prc_True'], axes= ax[0], y_label= "Fraction outcome = True", label= "Fraction outcome '{}' = True".format(outcome),
-            #         location = 'left', color= '#ff7f0e' )
             plt_period(x, y= period_df['prc_True'], axes= ax[0], y_label= "Fraction outcome = True", title = title_out)
             if xtr_outlier_rem:
                 ax[0].set_ylim(top = max_global_out*1.05)
