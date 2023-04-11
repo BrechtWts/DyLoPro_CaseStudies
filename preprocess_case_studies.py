@@ -90,3 +90,31 @@ def preprocess_bpic17(log):
     log = log.drop(['last_o_act'], axis = 1)
 
     return log 
+
+def preprocess_RTFM(log):
+    """Preprocess the Road Traffic Fines Management event log. 
+
+    Parameters
+    ----------
+    log : pandas.DataFrame 
+        Event log.
+
+    Returns
+    -------
+    log : pandas.DataFrame
+        Preprocessed event log.
+    """
+
+    # Converting the appropriate columns to object dtype 
+    to_object = {'org:resource': object, 'article': object, 'points': object}
+
+    # Convert columns to the specified dtypes
+    log = log.astype(to_object)
+
+    # Covnert timestamp col to appropriate datetime format 
+    log['time:timestamp'] = pd.to_datetime(log['time:timestamp'], utc=True)
+
+    # Drop the 'matricola' column
+    log = log.drop('matricola', axis=1)
+
+    return log 
