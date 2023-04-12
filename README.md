@@ -10,8 +10,8 @@ _"DyLoPro is a comprehensive visual analytics framework designed to explore even
 How to use and access DyLoPro's variety of plotting methods in an efficient and unified manner, is demonstrated in the case studies' associated notebooks. Further information can be found in the documentation provided with each of the plotting methods. 
 
 All of __DyLoPro__'s plotting methods construct time series by deriving real-valued measures for a choronologically ordered set of sublogs. This chronologically ordered set of sublogs is constructed by: 
-1. Defining the `frequency` parameter, that determines the frequency by which the observations are grouped. E.g. here, for all visualizations, we use the default `frequency='weekly'`. As such, the time period covered by the entire event log is subdivided into a chronologically ordered set of weekly time intervals. 
-1. Defining the `case_assignment` parameter, that determines the condition upon which each case is assigned to one of these equal-length time intervals. E.g. here, for all visualizations, we use the default `case_assignment='first_event'`. As such, each case is assigned to the time interval in which it first event occurs.
+1. Defining the `frequency` parameter, that determines the frequency by which the observations are grouped. E.g. for the BPIC19 case study, for all visualizations, we use the default `frequency='weekly'`. As such, the time period covered by the entire event log is subdivided into a chronologically ordered set of weekly time intervals. 
+1. Defining the `case_assignment` parameter, that determines the condition upon which each case is assigned to one of these equal-length time intervals. E.g. for the BPIC19 case study, for all visualizations, we use the default `case_assignment='first_event'`. As such, each case is assigned to the time interval in which it first event occurs.
 
 Consequently, e.g. for the BPIC19 case study with `frequency='weekly'` and `case_assignment='first_event'`, each case is assigned to the 1-week time interval in which its first event occurs and hence each sublog will consist of all cases that were initialized in one particular week. 
 
