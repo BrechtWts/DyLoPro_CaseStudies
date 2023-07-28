@@ -50,7 +50,7 @@ def preprocess_bpic17(log):
         else:
             return 0
 
-    log['time:timestamp'] = pd.to_datetime(log['time:timestamp'], format='%Y-%m-%d %H:%M:%S%z').dt.tz_convert('UTC')
+    log['time:timestamp'] = pd.to_datetime(log['time:timestamp'], format = 'mixed').dt.tz_convert('UTC')
 
     # Specifying which activities (if occurring) last indicate whether a case is ...
     relevant_offer_events = ["O_Accepted", "O_Refused", "O_Cancelled"]
